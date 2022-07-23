@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb0ef9289b7426195463d45df0e1e9c, type: 3}
+  m_Name: MetaData
+  m_EditorClassIdentifier: 
+  Meta:
+    Modules:
+    - Width: 3
+      Length: 2
+      StaticId: 1
+      ModuleName: Bridge
+      ModuleType: 1
+      ProductionType: 2
+      Production: 10
+      StorageCapacity: 0
+      CostGold: 1000
+      PlayerXP: 75
+      LevelRequired: 1
+      SpriteName: bridge
+    - Width: 3
+      Length: 3
+      StaticId: 2
+      ModuleName: Hangar
+      ModuleType: 1
+      ProductionType: 2
+      Production: 13
+      StorageCapacity: 0
+      CostGold: 1500
+      PlayerXP: 85
+      LevelRequired: 2
+      SpriteName: hangar
+    - Width: 4
+      Length: 3
+      StaticId: 3
+      ModuleName: Government
+      ModuleType: 0
+      ProductionType: 1
+      Production: 10
+      StorageCapacity: 800
+      CostGold: 5000
+      PlayerXP: 150
+      LevelRequired: 1
+      SpriteName: government
+    - Width: 2
+      Length: 3
+      StaticId: 4
+      ModuleName: Museum
+      ModuleType: 0
+      ProductionType: 1
+      Production: 9
+      StorageCapacity: 400
+      CostGold: 3000
+      PlayerXP: 70
+      LevelRequired: 1
+      SpriteName: museum
+    - Width: 2
+      Length: 2
+      StaticId: 5
+      ModuleName: Drugstore
+      ModuleType: 0
+      ProductionType: 1
+      Production: 4
+      StorageCapacity: 200
+      CostGold: 1500
+      PlayerXP: 120
+      LevelRequired: 1
+      SpriteName: drugstore
+    - Width: 3
+      Length: 3
+      StaticId: 6
+      ModuleName: Property
+      ModuleType: 0
+      ProductionType: 1
+      Production: 7
+      StorageCapacity: 600
+      CostGold: 2500
+      PlayerXP: 80
+      LevelRequired: 1
+      SpriteName: property
+    - Width: 1
+      Length: 1
+      StaticId: 7
+      ModuleName: Temple
+      ModuleType: 0
+      ProductionType: 1
+      Production: 4
+      StorageCapacity: 300
+      CostGold: 2200
+      PlayerXP: 130
+      LevelRequired: 3
+      SpriteName: temple
+    ZoomLevels: 3
+    MinZoomLevel: 70
+    MaxZoomLevel: 20
+    GridWidth: 32
+    GridHeight: 32
+    PlayerLevels: 0000000064000000d2000000a40100005802000084030000b0040000dc050000d0070000b80b00007017000010270000

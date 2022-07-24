@@ -35,6 +35,45 @@ namespace PG.Core.Context
             // Spawning first page.
             ShiftPage(0);
         }
+        
+        public void Refresh(List<M> itemsInList)
+        {
+            ItemsInList = itemsInList;
+
+            if (_currentSpawnedItems == null)
+            {
+                _currentSpawnedItems = new List<P>();
+            }
+
+            // Spawning first page.
+            ShiftPage(CurrentPageStart);
+        }
+
+        public void AddItem(M item, int insertIndex = -1)
+        {
+            if (insertIndex != -1)
+            {
+                ItemsInList.Insert(insertIndex, item);
+            }
+            else
+            {
+                ItemsInList.Add(item);
+            }
+
+            ShiftPage(CurrentPageStart);
+        }
+        
+        public void RemoveItem(M item, int insertIndex = -1)
+        {
+            if (ItemsInList.Remove(item))
+            {
+                ShiftPage(CurrentPageStart);
+            }
+            else
+            {
+                Debug.LogError("Remove failed. Item not found in the list.");   
+            }
+        }
 
         private P SpawnAndCache(M model)
         {

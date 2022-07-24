@@ -68,7 +68,8 @@ namespace PG.Core.FSM
         {
             SignalBus.Unsubscribe<RequestStateChangeSignal>(GoToState);
 
-            CurrentStateBehaviour?.OnStateExit();
+            if (Application.isPlaying)
+                CurrentStateBehaviour?.OnStateExit();
 
             Disposables.Dispose();
 

@@ -1,8 +1,11 @@
 ﻿using System.IO;
-using PG.CastleBuilder;
-using PG.CastleBuilder.Context;
+using System.Linq;
+using PG.ClassRoom;
+using PG.ClassRoom.Context;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace PG.Editor
 {
@@ -51,7 +54,7 @@ namespace PG.Editor
         }
         
         #region StartFromFirst
-        /*private const string _playFromFirstMenuStr = "Game/Always Start From Startup Scene &p";
+        private const string _playFromFirstMenuStr = "Game/Always Start From Startup Scene &p";
 
         static bool PlayFromFirstScene
         {
@@ -101,7 +104,7 @@ namespace PG.Editor
                 EditorWindow.GetWindow<SceneView>().ShowNotification(new GUIContent(msg));
             else
                 Debug.Log(msg); // When there's no scene view opened, we just print a log
-        }*/
+        }
         #endregion
     }
 }

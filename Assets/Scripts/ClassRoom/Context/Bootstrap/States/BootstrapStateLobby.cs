@@ -6,9 +6,9 @@ namespace PG.ClassRoom.Context.Bootstrap
 {
     public partial class BootstrapMediator
     {
-        private class BootstrapStateGamePlay : BootstrapState
+        private class BootstrapStateLobby : BootstrapState
         {
-            public BootstrapStateGamePlay(Bootstrap.BootstrapMediator mediator):base(mediator)
+            public BootstrapStateLobby(Bootstrap.BootstrapMediator mediator):base(mediator)
             {
             }
 
@@ -16,7 +16,7 @@ namespace PG.ClassRoom.Context.Bootstrap
             {
                 base.OnStateEnter();
                 
-                SignalFactory.Create<LoadUnloadScenesSignal>().Load(new[] { Scenes.GamePlay }).Done
+                SignalFactory.Create<LoadUnloadScenesSignal>().Load(new[] { Scenes.Lobby }).Done
                 (async () =>
                     {
                         // For progress animation effect

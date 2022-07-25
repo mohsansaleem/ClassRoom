@@ -2,30 +2,30 @@
 
 namespace PG.ClassRoom.Model.Context
 {
-    public class ShopContextModel
+    public class LobbyContextModel
     {
-        public readonly ReactiveProperty<EShopState> ShopState;
+        public readonly ReactiveProperty<ELobbyState> LobbyState;
 
-        public ShopContextModel()
+        public LobbyContextModel()
         {
-            ShopState = new ReactiveProperty<EShopState>(EShopState.Workshop);
+            LobbyState = new ReactiveProperty<ELobbyState>(ELobbyState.Loading);
         }
         
-        public void ChangeState(EShopState state)
+        public void ChangeState(ELobbyState state)
         {
-            ShopState.Value = state;
+            LobbyState.Value = state;
         }
 
-        public void ChangeStateAndNotify(EShopState state)
+        public void ChangeStateAndNotify(ELobbyState state)
         {
-            ShopState.SetValueAndForceNotify(state);
+            LobbyState.SetValueAndForceNotify(state);
         }
     }
 
-    public enum EShopState
+    public enum ELobbyState
     {
-        Workshop = 0,
-        Decorations
+        Loading = 0,
+        RoomsList
     }
 }
 

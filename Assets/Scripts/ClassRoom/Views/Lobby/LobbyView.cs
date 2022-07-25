@@ -1,18 +1,21 @@
-﻿using PG.ClassRoom.Context.Shop.Elements.Friend;
+﻿using PG.ClassRoom.Context.Lobby.Elements.Friend;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace PG.ClassRoom.Views.Gameplay
 {
-    public class ShopView : MonoBehaviour
+    public class LobbyView : MonoBehaviour
     {
-        public Toggle WorkshopToggle;
-        public Toggle DecorationToggle;
-        public Button ExitButton;
+        public CanvasGroup LoadingPanel;
         
         public void Show()
         {
             gameObject.SetActive(true);
+        }
+
+        public void SetLoading(bool isLoading)
+        {
+            LoadingPanel.alpha = isLoading ? 1 : 0;
         }
 
         public void Hide()

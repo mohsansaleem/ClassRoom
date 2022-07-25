@@ -35,7 +35,7 @@ namespace PG.ClassRoom.Context.Bootstrap
             StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.CreateMetaData, new BootstrapStateCreateMetaData(this)); // Temporary State for creating MetaData
             StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.LoadUserData, new BootstrapStateLoadUserData(this));
             StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.CreateUserData, new BootstrapStateCreateUserData(this));
-            StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.GamePlay, new BootstrapStateGamePlay(this));
+            StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.GamePlay, new BootstrapStateLobby(this));
 
             _bootstrapContextModel.LoadingProgress.Subscribe(OnLoadingProgressChanged).AddTo(Disposables);
         }

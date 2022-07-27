@@ -8,10 +8,11 @@ namespace PG.ClassRoom.Model.Context
         {
             NotLoaded = -1,
             LoadStaticData = 0,
-            CreateMetaData = 30,
-            LoadUserData = 50,
-            CreateUserData = 70,
-            GamePlay = 100
+            CreateMetaData = 20,
+            LoadUserData = 40,
+            CreateUserData = 60,
+            RealTimeServer = 80,
+            Lobby = 100,
         }
         
         public readonly ReactiveProperty<ELoadingProgress> LoadingProgress;

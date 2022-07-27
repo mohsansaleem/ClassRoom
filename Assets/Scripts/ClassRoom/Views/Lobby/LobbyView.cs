@@ -6,18 +6,43 @@ namespace PG.ClassRoom.Views.Gameplay
 {
     public class LobbyView : MonoBehaviour
     {
-        public CanvasGroup LoadingPanel;
+        public CanvasGroup ErrorPanel;
+        public Text ErrorMessage;
+        public Button ErrorOkButton;
+        public CanvasGroup CreatePanel;
+        public Text RoomsCount;
+        public Button CreateRoomPanelButton;
+        public InputField RoomName;
+        public Button CreateRoomButton;
+        public Button ExitCreateRoomButton;
         
         public void Show()
         {
             gameObject.SetActive(true);
         }
 
-        public void SetLoading(bool isLoading)
+        public void ShowErrorMessage(string message)
         {
-            LoadingPanel.alpha = isLoading ? 1 : 0;
+            ErrorMessage.text = message;
+            ErrorPanel.gameObject.SetActive(true);
         }
 
+        public void HideErrorMessage()
+        {
+            ErrorPanel.gameObject.SetActive(false);
+        }
+
+        public void ShowCreateRoom()
+        {
+            CreatePanel.gameObject.SetActive(true);
+        }
+
+        
+        public void HideCreateRoom()
+        {
+            CreatePanel.gameObject.SetActive(false);
+        }
+        
         public void Hide()
         {
             gameObject.SetActive(false);

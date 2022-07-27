@@ -2,6 +2,7 @@
 using PG.ClassRoom.Model;
 using PG.ClassRoom.Model.Context;
 using PG.ClassRoom.Model.Remote;
+using PG.ClassRoom.Service;
 using PG.ClassRoom.Views.Bootstrap;
 using PG.Core.FSM;
 using PG.Core.Installer;
@@ -19,6 +20,8 @@ namespace PG.ClassRoom.Context.Bootstrap
 
         [Inject] private readonly StaticDataModel _staticDataModel;
         [Inject] private readonly RemoteDataModel _remoteDataModel;
+        [Inject] private readonly RealtimeHub _realtimeHub;
+        
 
         [Inject] private ProjectContextInstaller.Settings _gameSettings;
 
@@ -35,7 +38,8 @@ namespace PG.ClassRoom.Context.Bootstrap
             StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.CreateMetaData, new BootstrapStateCreateMetaData(this)); // Temporary State for creating MetaData
             StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.LoadUserData, new BootstrapStateLoadUserData(this));
             StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.CreateUserData, new BootstrapStateCreateUserData(this));
-            StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.GamePlay, new BootstrapStateLobby(this));
+            StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.RealTimeServer, new BootstrapStateRealtimeServer(this));
+            StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.Lobby, new BootstrapStateLobby(this));
 
             _bootstrapContextModel.LoadingProgress.Subscribe(OnLoadingProgressChanged).AddTo(Disposables);
         }

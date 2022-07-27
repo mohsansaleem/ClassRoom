@@ -19,7 +19,7 @@ namespace PG.ClassRoom.Context.Bootstrap
                     {
                         // For progress animation effect
                         await Task.Delay(200);
-                        BootstrapContextModel.ChangeState(Model.Context.BootstrapContextModel.ELoadingProgress.GamePlay);
+                        BootstrapContextModel.ChangeState(Model.Context.BootstrapContextModel.ELoadingProgress.RealTimeServer);
                     }
                     , e =>
                     {

@@ -20,6 +20,7 @@ namespace PG.ClassRoom.Context.Lobby
             protected readonly ProjectContextInstaller.Settings ProjectSettings;
 
             protected readonly RemoteDataModel RemoteDataModel;
+            protected readonly RealtimeDataModel RealtimeDataModel;
             protected readonly StaticDataModel StaticDataModel;
 
             protected readonly RoomsListView RoomsListView;
@@ -28,12 +29,13 @@ namespace PG.ClassRoom.Context.Lobby
             {
                 this.Mediator = mediator;
                 
-                this.LobbyContextModel = mediator._shopContextModel;
+                this.LobbyContextModel = mediator._lobbyContextModel;
                 this.View = mediator._view;
 
                 this.ProjectSettings = mediator._projectSettings;
 
                 this.RemoteDataModel = mediator._remoteDataModel;
+                this.RealtimeDataModel = mediator._realtimeDataModel;
                 this.StaticDataModel = mediator._staticDataModel;
 
                 this.RoomsListView = mediator._modulesListView;

@@ -10,7 +10,7 @@ namespace PG.ClassRoom
         public static string MetaDataFile => Path.Combine(DataFolder,"MetaData.json");
         public static string GameStateFile => Path.Combine(DataFolder,"GameState.json");
         
-        public static int RoomsListSize = 7;
+        public static int RoomsListSize = 4;
 
         public const int GridTileSize = 5;
         public const int FriendsListSize = 7;

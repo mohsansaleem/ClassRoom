@@ -49,6 +49,26 @@ namespace PG.Core.Context
             ShiftPage(CurrentPageStart);
         }
 
+        public int GetIndexOfItem(M item)
+        {
+            return ItemsInList.IndexOf(item);
+        }
+        
+        public void ReplaceItem(M item, int itemIndex = -1)
+        {
+            if (itemIndex != -1)
+            {
+                ItemsInList.RemoveAt(itemIndex);
+                ItemsInList.Insert(itemIndex, item);
+            }
+            else
+            {
+                ItemsInList.Add(item);
+            }
+
+            ShiftPage(CurrentPageStart);
+        }
+        
         public void AddItem(M item, int insertIndex = -1)
         {
             if (insertIndex != -1)
@@ -62,8 +82,8 @@ namespace PG.Core.Context
 
             ShiftPage(CurrentPageStart);
         }
-        
-        public void RemoveItem(M item, int insertIndex = -1)
+
+        public void RemoveItem(M item)
         {
             if (ItemsInList.Remove(item))
             {

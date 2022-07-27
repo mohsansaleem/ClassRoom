@@ -19,5 +19,7 @@ namespace PG.ClassRoom.Model.Data
         // Each entry mention what XP is required to level up.
         // Zero-based indexing. Level - 1 => XP Required for Level
         public int[] PlayerLevels;
+
+        public string RealtimeGameVersion;
     }
 }

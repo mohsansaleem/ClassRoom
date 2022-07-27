@@ -8,7 +8,7 @@ namespace PG.ClassRoom.Model.Context
 
         public LobbyContextModel()
         {
-            LobbyState = new ReactiveProperty<ELobbyState>(ELobbyState.Loading);
+            LobbyState = new ReactiveProperty<ELobbyState>(ELobbyState.Create);
         }
         
         public void ChangeState(ELobbyState state)
@@ -24,7 +24,7 @@ namespace PG.ClassRoom.Model.Context
 
     public enum ELobbyState
     {
-        Loading = 0,
+        Create = 0,
         RoomsList
     }
 }

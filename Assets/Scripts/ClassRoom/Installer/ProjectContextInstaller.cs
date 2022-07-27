@@ -25,6 +25,7 @@ namespace PG.ClassRoom.Installer
 
             Container.Bind<StaticDataModel>().AsSingle();
             Container.Bind<RemoteDataModel>().AsSingle();
+            Container.Bind<RealtimeDataModel>().AsSingle();
             Container.Bind<BootstrapContextModel>().AsSingle();
             Container.Bind<GamePlayContextModel>().AsSingle();
             
@@ -41,6 +42,7 @@ namespace PG.ClassRoom.Installer
             // For now I am using local plain files.
             Container.BindInterfacesTo<FileStorageService>().AsSingle();
 
+            //Container.Bind<RealtimeHub>().FromNewComponentOnNewGameObject().AsSingle();
             //Container.Bind<DOTS_Hub>().AsSingle();
         }
 

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using PG.ClassRoom.Model.Data;
 using PG.ClassRoom.Model.Remote;
+using Photon.Pun;
 using Photon.Realtime;
 using UniRx;
+using UnityEngine;
 
 namespace PG.ClassRoom.Context.Lobby
 {
@@ -54,7 +56,7 @@ namespace PG.ClassRoom.Context.Lobby
             public override void OnStateEnter()
             {
                 base.OnStateEnter();
-
+                
                 foreach (KeyValuePair<string,RoomInfo> roomsRemoteData in RealtimeDataModel.RoomsRemoteDatas)
                 {
                     if (!roomsCache.ContainsKey(roomsRemoteData.Key))
@@ -62,7 +64,6 @@ namespace PG.ClassRoom.Context.Lobby
                         roomsCache[roomsRemoteData.Key] = GetRoomData(roomsRemoteData.Value);
                     }
                 }
-                
                 
                 List<string> roomsToRemove = new List<string>();
                 foreach (string key in roomsCache.Keys)

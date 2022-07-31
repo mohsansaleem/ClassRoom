@@ -15,8 +15,8 @@ namespace PG.ClassRoom.Context.Gameplay
             {
                 base.OnStateEnter();
 
-                GridController.GridSize = new Vector2(StaticDataModel.MetaData.GridWidth, StaticDataModel.MetaData.GridHeight);
-                CameraController.CurrentZoom = StaticDataModel.MetaData.MinZoomLevel;
+                //GridController.GridSize = new Vector2(StaticDataModel.MetaData.GridWidth, StaticDataModel.MetaData.GridHeight);
+                //CameraController.CurrentZoom = StaticDataModel.MetaData.MinZoomLevel;
                 
                 Mediator._gamePlayContextModel.ChangeStateAndNotify(EGamePlayState.Regular);
             }

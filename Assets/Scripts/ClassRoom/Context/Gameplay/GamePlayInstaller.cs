@@ -1,6 +1,8 @@
 ﻿using PG.ClassRoom.Command;
 using PG.ClassRoom.Installer;
 using PG.Core.Installer;
+using Photon.Pun;
+using UnityEngine;
 using Zenject;
 
 namespace PG.ClassRoom.Context.Gameplay
@@ -30,6 +32,12 @@ namespace PG.ClassRoom.Context.Gameplay
             Container.BindSignal<RemoveModuleSignal>()
                 .ToMethod<RemoveModuleCommand>(command => command.Execute)
                 .FromResolve();
+            
+            /*Container.BindFactory<X, PlaceholderFactory<X>>().FromMethod((injectionContext)=>{
+                var gameObject = PhotonNetwork.Instantiate("MyPrefabName", new Vector3(0, 0, 0), Quaternion.identity, 0);
+                injectionContext.Inject(gameObject);
+                return gameObject;
+            });*/
         }
     }
 }

@@ -15,6 +15,9 @@ namespace PG.ClassRoom.Views.Gameplay
         public InputField RoomName;
         public Button CreateRoomButton;
         public Button ExitCreateRoomButton;
+        public CanvasGroup ConnectPanel;
+        public InputField UserNameInputField;
+        public Button JoinButton;
         
         public void Show()
         {
@@ -32,12 +35,21 @@ namespace PG.ClassRoom.Views.Gameplay
             ErrorPanel.gameObject.SetActive(false);
         }
 
+        public void ShowConnect()
+        {
+            ConnectPanel.gameObject.SetActive(true);
+        }
+
+        public void HideConnect()
+        {
+            ConnectPanel.gameObject.SetActive(false);
+        }
+        
         public void ShowCreateRoom()
         {
             CreatePanel.gameObject.SetActive(true);
         }
 
-        
         public void HideCreateRoom()
         {
             CreatePanel.gameObject.SetActive(false);

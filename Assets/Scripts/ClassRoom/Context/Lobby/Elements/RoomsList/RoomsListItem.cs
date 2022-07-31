@@ -1,5 +1,6 @@
 ﻿using PG.ClassRoom.Installer;
 using PG.ClassRoom.Model.Data;
+using PG.ClassRoom.Service;
 using PG.Core.Context;
 using PG.Core.Installer;
 using UnityEngine.UI;
@@ -16,13 +17,15 @@ namespace PG.ClassRoom.Context.Lobby.Elements.Friend
 
         [Inject] private ProjectContextInstaller.Settings _settings;
         [Inject] private readonly Signal.Factory _signalFactory;
+        [Inject] private readonly RealtimeHub _realtimeHub;
         
         [Inject]
         public void Construct()
         {
             ItemButton.onClick.AddListener(() =>
             {
-                // TODO: GoTo Room
+                _realtimeHub.JoinRoom(Data.RoomName);
+                // TODO: Go to room
                 //_signalFactory.Create<AttachRoomToPointerSignal>().AttachRoom(Data.StaticId);
                 _signalFactory.Create<UnloadSceneSignal>().Unload(Scenes.Lobby);
             });

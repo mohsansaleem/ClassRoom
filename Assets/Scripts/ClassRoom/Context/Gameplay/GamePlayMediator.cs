@@ -7,6 +7,7 @@ using PG.ClassRoom.Model.Remote;
 using PG.ClassRoom.Views.Gameplay;
 using PG.Core.FSM;
 using PG.Core.Installer;
+using Photon.Realtime;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -26,6 +27,7 @@ namespace PG.ClassRoom.Context.Gameplay
         [Inject] private readonly GamePlayContextModel _gamePlayContextModel;
         [Inject] private readonly StaticDataModel _staticDataModel;
         [Inject] private readonly RemoteDataModel _remoteDataModel;
+        [Inject] private readonly RealtimeDataModel _realtimeDataModel;
 
         [Inject] private ModuleRemoteDataModel.Factory _moduleFactory;
 
@@ -44,12 +46,21 @@ namespace PG.ClassRoom.Context.Gameplay
         {
             base.Initialize();
 
-            StateBehaviours.Add((int)EGamePlayState.Load, new GamePlayStateLoad(this));
-            StateBehaviours.Add((int)EGamePlayState.Regular, new GamePlayStateRegular(this));
-            StateBehaviours.Add((int)EGamePlayState.PlaceModule, new GamePlayStatePlaceModule(this));
-            StateBehaviours.Add((int)EGamePlayState.ModuleMenu, new GamePlayStateModuleMenu(this));
-            StateBehaviours.Add((int)EGamePlayState.MoveModule, new GamePlayStateMoveModule(this));
+            InitStates();
+            AddListeners();
+        }
 
+        private void InitStates()
+        {
+            StateBehaviours.Add((int) EGamePlayState.Load, new GamePlayStateLoad(this));
+            StateBehaviours.Add((int) EGamePlayState.Regular, new GamePlayStateRegular(this));
+            StateBehaviours.Add((int) EGamePlayState.PlaceModule, new GamePlayStatePlaceModule(this));
+            StateBehaviours.Add((int) EGamePlayState.ModuleMenu, new GamePlayStateModuleMenu(this));
+            StateBehaviours.Add((int) EGamePlayState.MoveModule, new GamePlayStateMoveModule(this));
+        }
+
+        private void AddListeners()
+        {
             // Observing Remote Data.
             _remoteDataModel.PlayerName.Subscribe(name => _view.PlayerName.text = name).AddTo(Disposables);
             _remoteDataModel.PlayerLevel.Subscribe(level => _view.PlayerLevel.text = $"Level: {level}").AddTo(Disposables);
@@ -62,21 +73,30 @@ namespace PG.ClassRoom.Context.Gameplay
             HandleUIInput();
 
             OnGamePlayStateChanged(EGamePlayState.Load);
-            
+
             _gamePlayContextModel.GamePlayState.Subscribe(OnGamePlayStateChanged).AddTo(Disposables);
 
-            SignalBus.Subscribe<AttachModuleToPointerSignal>(signal =>
+            /*SignalBus.Subscribe<AttachModuleToPointerSignal>(signal =>
             {
                 _gamePlayContextModel.ModuleToAttach.Value =
                     _staticDataModel.MetaData.Modules.Find(m => m.StaticId.Equals(signal.ModuleStaticId));
                 _gamePlayContextModel.ChangeState(EGamePlayState.PlaceModule);
-            });
+            });*/
+            _realtimeDataModel.CurrentRoom.Subscribe(OnRoomLeft).AddTo(Disposables);
+        }
+
+        private void OnRoomLeft(Room room)
+        {
+            if (room == null)
+            {
+                SignalFactory.Create<LoadUnloadScenesSignal>().LoadUnload(Scenes.Lobby, Scenes.GamePlay);
+            }
         }
 
         private void InitEnvironment()
         {
-            ChangeZoom(0);
-            _cameraController.Position = new Vector3((_staticDataModel.MetaData.GridWidth * Constants.GridTileSize) / 2f, 0, (_staticDataModel.MetaData.GridHeight * Constants.GridTileSize) / 2f);
+            //ChangeZoom(0);
+            //_cameraController.Position = new Vector3((_staticDataModel.MetaData.GridWidth * Constants.GridTileSize) / 2f, 0, (_staticDataModel.MetaData.GridHeight * Constants.GridTileSize) / 2f);
         }
         
         private void HandleUIInput()
@@ -88,7 +108,7 @@ namespace PG.ClassRoom.Context.Gameplay
                     _view.FriendsPanel.activeInHierarchy ? "Hide Friends" : "Show Friends";
             }).AddTo(Disposables);
 
-            _view.ZoomInButton.OnClickAsObservable().Subscribe(_ =>
+            /*_view.ZoomInButton.OnClickAsObservable().Subscribe(_ =>
             {
                 ChangeZoom(1);
             }).AddTo(Disposables);
@@ -96,7 +116,7 @@ namespace PG.ClassRoom.Context.Gameplay
             _view.ZoomOutButton.OnClickAsObservable().Subscribe(_ =>
             {
                 ChangeZoom(-1);
-            }).AddTo(Disposables);
+            }).AddTo(Disposables);*/
             
             _view.ShopButton.onClick.AsObservable().Subscribe(_ =>
             {
@@ -115,8 +135,8 @@ namespace PG.ClassRoom.Context.Gameplay
                 HideErrorPanel();
             }).AddTo(Disposables);
             
-            _gridController.OnMouseDownAtGrid += OnMouseDownAtGrid;
-            _gridController.OnMouseUpAtGrid += OnMouseUpAtGrid;
+            /*_gridController.OnMouseDownAtGrid += OnMouseDownAtGrid;
+            _gridController.OnMouseUpAtGrid += OnMouseUpAtGrid;*/
         }
 
         private void ChangeZoom(int step)

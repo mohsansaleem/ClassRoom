@@ -17,7 +17,7 @@ namespace PG.ClassRoom.Context.Gameplay
 
                 View.LowerPanel.SetActive(true);
                 
-                Mediator.OnClickAtModule += OnClickAtModule;
+                //Mediator.OnClickAtModule += OnClickAtModule;
             }
 
             private void OnClickAtModule(ModuleRemoteDataModel model)

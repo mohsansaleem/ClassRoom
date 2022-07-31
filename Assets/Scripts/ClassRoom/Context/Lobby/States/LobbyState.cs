@@ -3,6 +3,7 @@ using PG.ClassRoom.Installer;
 using PG.ClassRoom.Model;
 using PG.ClassRoom.Model.Context;
 using PG.ClassRoom.Model.Remote;
+using PG.ClassRoom.Service;
 using PG.ClassRoom.Views.Gameplay;
 using PG.Core.FSM;
 
@@ -23,6 +24,8 @@ namespace PG.ClassRoom.Context.Lobby
             protected readonly RealtimeDataModel RealtimeDataModel;
             protected readonly StaticDataModel StaticDataModel;
 
+            protected readonly RealtimeHub RealtimeHub;
+
             protected readonly RoomsListView RoomsListView;
 
             public LobbyState(Lobby.LobbyMediator mediator) : base(mediator)
@@ -37,6 +40,8 @@ namespace PG.ClassRoom.Context.Lobby
                 this.RemoteDataModel = mediator._remoteDataModel;
                 this.RealtimeDataModel = mediator._realtimeDataModel;
                 this.StaticDataModel = mediator._staticDataModel;
+
+                this.RealtimeHub = mediator._realtimeHub;
 
                 this.RoomsListView = mediator._modulesListView;
             }

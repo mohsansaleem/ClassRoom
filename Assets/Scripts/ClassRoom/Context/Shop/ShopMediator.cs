@@ -29,19 +29,19 @@ namespace PG.ClassRoom.Context.Shop
         {
             base.Initialize();
 
-            StateBehaviours.Add((int)EShopState.Workshop, new ShopStateWorkshop(this));
-            StateBehaviours.Add((int)EShopState.Decorations, new ShopStateDecoration(this));
+            InitStates();
+            AddListeners();
+        }
 
-            _view.ExitButton.OnClickAsObservable().Subscribe(_ =>
-            {
-                SignalFactory.Create<UnloadSceneSignal>().Unload(Scenes.Shop).Done
-                (
-                    () =>
-                    {
-                        Debug.Log("Shop Closed.");
-                    }
-                );
-            }).AddTo(Disposables);
+        private void InitStates()
+        {
+            StateBehaviours.Add((int) EShopState.Workshop, new ShopStateWorkshop(this));
+            StateBehaviours.Add((int) EShopState.Decorations, new ShopStateDecoration(this));
+        }
+
+        private void AddListeners()
+        {
+            _view.ExitButton.OnClickAsObservable().Subscribe(OnExitButtonClicked).AddTo(Disposables);
 
             _view.WorkshopToggle.onValueChanged.AsObservable().Subscribe(isOn =>
             {
@@ -50,13 +50,18 @@ namespace PG.ClassRoom.Context.Shop
                     _shopContextModel.ChangeState(EShopState.Workshop);
                 }
             }).AddTo(Disposables);
-            
+
             _view.DecorationToggle.onValueChanged.AsObservable().Subscribe(isOn =>
             {
                 _shopContextModel.ChangeState(EShopState.Decorations);
             }).AddTo(Disposables);
-            
+
             _shopContextModel.ShopState.Subscribe(OnShopStateChanged).AddTo(Disposables);
+        }
+
+        private void OnExitButtonClicked(Unit _)
+        {
+            SignalFactory.Create<UnloadSceneSignal>().Unload(Scenes.Shop).Done(() => { Debug.Log("Shop Closed."); });
         }
 
         private void OnShopStateChanged(EShopState gamePlayState)

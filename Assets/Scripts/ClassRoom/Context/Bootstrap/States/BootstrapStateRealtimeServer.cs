@@ -17,20 +17,7 @@ namespace PG.ClassRoom.Context.Bootstrap
             {
                 base.OnStateEnter();
                 
-                Mediator._realtimeHub.Connect().Then(
-                    async (isSuccess) =>
-                    {
-                        // For progress animation effect
-                        await Task.Delay(200);
-                        if (isSuccess)
-                            BootstrapContextModel.ChangeState(Model.Context.BootstrapContextModel.ELoadingProgress.Lobby);
-                        else
-                            Debug.LogError("photon server connection failed.");
-                    }
-                    , e =>
-                    {
-                        Debug.LogError("Unable to connect to photon");
-                    });
+                BootstrapContextModel.ChangeState(Model.Context.BootstrapContextModel.ELoadingProgress.Lobby);
             }
         }
     }

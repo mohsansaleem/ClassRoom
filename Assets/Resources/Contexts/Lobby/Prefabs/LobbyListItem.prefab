@@ -187,7 +187,7 @@ MonoBehaviour:
     SpriteName: 
   RoomPicture: {fileID: 8662697888783454667}
   RoomName: {fileID: 7874146692136253762}
-  MembersCount: {fileID: 0}
+  MembersCount: {fileID: 2606855549073806946}
   ItemButton: {fileID: 1883999382650671779}
 --- !u!1 &1005787079573787260
 GameObject:

@@ -34,14 +34,19 @@ namespace PG.ClassRoom.Context.Bootstrap
         {
             base.Initialize();
 
-            StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.LoadStaticData, new BootstrapStateLoadStaticData(this));
-            StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.CreateMetaData, new BootstrapStateCreateMetaData(this)); // Temporary State for creating MetaData
-            StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.LoadUserData, new BootstrapStateLoadUserData(this));
-            StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.CreateUserData, new BootstrapStateCreateUserData(this));
-            StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.RealTimeServer, new BootstrapStateRealtimeServer(this));
-            StateBehaviours.Add((int)BootstrapContextModel.ELoadingProgress.Lobby, new BootstrapStateLobby(this));
+            InitStates();
 
             _bootstrapContextModel.LoadingProgress.Subscribe(OnLoadingProgressChanged).AddTo(Disposables);
+        }
+
+        private void InitStates()
+        {
+            StateBehaviours.Add((int) BootstrapContextModel.ELoadingProgress.LoadStaticData, new BootstrapStateLoadStaticData(this));
+            StateBehaviours.Add((int) BootstrapContextModel.ELoadingProgress.CreateMetaData, new BootstrapStateCreateMetaData(this)); // Temporary State for creating MetaData
+            StateBehaviours.Add((int) BootstrapContextModel.ELoadingProgress.LoadUserData, new BootstrapStateLoadUserData(this));
+            StateBehaviours.Add((int) BootstrapContextModel.ELoadingProgress.CreateUserData, new BootstrapStateCreateUserData(this));
+            StateBehaviours.Add((int) BootstrapContextModel.ELoadingProgress.RealTimeServer, new BootstrapStateRealtimeServer(this));
+            StateBehaviours.Add((int) BootstrapContextModel.ELoadingProgress.Lobby, new BootstrapStateLobby(this));
         }
 
         private void OnLoadingProgressChanged(BootstrapContextModel.ELoadingProgress loadingProgress)

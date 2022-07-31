@@ -25,7 +25,8 @@ namespace PG.ClassRoom.Model.Context
     public enum ELobbyState
     {
         Create = 0,
-        RoomsList
+        RoomsList,
+        JoinLobby
     }
 }
 

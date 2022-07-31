@@ -88,6 +88,11 @@ namespace PG.ClassRoom.Service
             _connetionPromise?.Resolve(true);
         }
 
+        public override void OnConnected()
+        {
+            base.OnConnected();
+        }
+
         public override void OnJoinedLobby()
         {
             base.OnJoinedLobby();
@@ -150,7 +155,6 @@ namespace PG.ClassRoom.Service
         public override void OnDisconnected(DisconnectCause cause)
         {
             base.OnDisconnected(cause);
-            _connetionPromise?.Reject(new Exception("Unable to connect"));
         }
         #endregion Events
     }

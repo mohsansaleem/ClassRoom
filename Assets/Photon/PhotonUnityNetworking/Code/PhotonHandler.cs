@@ -38,6 +38,7 @@ namespace Photon.Pun
                         GameObject obj = new GameObject();
                         obj.name = "PhotonMono";
                         instance = obj.AddComponent<PhotonHandler>();
+                        obj.SetActive(true);
                     }
                 }
 

@@ -25,9 +25,6 @@ namespace PG.ClassRoom.Context.Lobby.Elements.Friend
             ItemButton.onClick.AddListener(() =>
             {
                 _realtimeHub.JoinRoom(Data.RoomName);
-                // TODO: Go to room
-                //_signalFactory.Create<AttachRoomToPointerSignal>().AttachRoom(Data.StaticId);
-                _signalFactory.Create<UnloadSceneSignal>().Unload(Scenes.Lobby);
             });
         }
 

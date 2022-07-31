@@ -92,8 +92,8 @@ namespace PG.Editor
                 return;
             }
 
-            foreach (GameObject go in Object.FindObjectsOfType<GameObject>())
-                go.SetActive(false);
+            //foreach (GameObject go in Object.FindObjectsOfType<GameObject>())
+            //    go.SetActive(false);
 
             SceneManager.LoadScene(0);
         }

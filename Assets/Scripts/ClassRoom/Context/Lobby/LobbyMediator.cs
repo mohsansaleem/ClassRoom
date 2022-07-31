@@ -89,7 +89,6 @@ namespace PG.ClassRoom.Context.Lobby
                 {
                     if (isConnectSuccess)
                     {
-                        await Task.Delay(200);
                         _realtimeHub.JoinLobby().Then(
                             async (isSuccess) =>
                             {
@@ -137,11 +136,7 @@ namespace PG.ClassRoom.Context.Lobby
             string roomName = _view.RoomName.text;
 
             RoomOptions options = new RoomOptions {PlayerTtl = 10000};
-            if (_realtimeHub.CreateRoom(roomName))
-            {
-                // TODO: Go to room
-            }
-            else
+            if (!_realtimeHub.CreateRoom(roomName))
             {
                 _view.ShowErrorMessage("Unable to create room");
             }

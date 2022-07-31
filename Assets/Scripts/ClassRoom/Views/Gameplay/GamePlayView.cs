@@ -21,11 +21,13 @@ namespace PG.ClassRoom.Views.Gameplay
 
         [Header("Environment")] 
         public Transform GridTransform;
+        public Transform Environment;
 
         [Header("Interaction")]
         public GameObject LowerPanel;
         public Button ShopButton;
         public Button FriendsToggleButton;
+        public Button LobbyButton;
         public Text FriendsToggleButtonText;
         public GameObject FriendsPanel;
         public Button ZoomInButton;

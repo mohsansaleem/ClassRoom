@@ -78,7 +78,12 @@ namespace PG.ClassRoom.Context.Lobby
         {
             if (room != null)
             {
-                SignalFactory.Create<LoadUnloadScenesSignal>().LoadUnload(Scenes.GamePlay, Scenes.Lobby);
+                _view.Hide();
+                SignalFactory.Create<LoadSceneSignal>().Load(Scenes.GamePlay);
+            }
+            else
+            {
+                _view.Show();
             }
         }
 
@@ -136,7 +141,7 @@ namespace PG.ClassRoom.Context.Lobby
             string roomName = _view.RoomName.text;
 
             RoomOptions options = new RoomOptions {PlayerTtl = 10000};
-            if (!_realtimeHub.CreateRoom(roomName))
+            if (!_realtimeHub.CreateRoom(roomName, options))
             {
                 _view.ShowErrorMessage("Unable to create room");
             }

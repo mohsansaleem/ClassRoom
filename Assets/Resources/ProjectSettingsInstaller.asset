@@ -49,3 +49,5 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 1fbc750fcdab74b22b3d066e292457ea, type: 3}
     Prefab: {fileID: 1100292721899873297, guid: 3dd98cd1c2f05448383c4b9d129407dc,
       type: 3}
+    PlayerPrefab: {fileID: 3564092473027462719, guid: 2f8a4bfdcf01da74693315ab4ba9c788,
+      type: 3}

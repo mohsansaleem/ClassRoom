@@ -66,6 +66,7 @@ namespace PG.ClassRoom.Installer
             }
 
             public GameObject Prefab;
+            public PlayerController PlayerPrefab;
         }   
     }
     

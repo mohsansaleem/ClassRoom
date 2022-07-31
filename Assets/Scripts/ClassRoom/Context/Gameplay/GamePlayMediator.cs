@@ -4,6 +4,7 @@ using PG.ClassRoom.Model;
 using PG.ClassRoom.Model.Context;
 using PG.ClassRoom.Model.Data;
 using PG.ClassRoom.Model.Remote;
+using PG.ClassRoom.Service;
 using PG.ClassRoom.Views.Gameplay;
 using PG.Core.FSM;
 using PG.Core.Installer;
@@ -28,6 +29,9 @@ namespace PG.ClassRoom.Context.Gameplay
         [Inject] private readonly StaticDataModel _staticDataModel;
         [Inject] private readonly RemoteDataModel _remoteDataModel;
         [Inject] private readonly RealtimeDataModel _realtimeDataModel;
+        [Inject] private readonly PlayerController.Factory _playerControllerFactory;
+        
+        [Inject] private readonly RealtimeHub _realtimeHub;
 
         [Inject] private ModuleRemoteDataModel.Factory _moduleFactory;
 
@@ -75,13 +79,6 @@ namespace PG.ClassRoom.Context.Gameplay
             OnGamePlayStateChanged(EGamePlayState.Load);
 
             _gamePlayContextModel.GamePlayState.Subscribe(OnGamePlayStateChanged).AddTo(Disposables);
-
-            /*SignalBus.Subscribe<AttachModuleToPointerSignal>(signal =>
-            {
-                _gamePlayContextModel.ModuleToAttach.Value =
-                    _staticDataModel.MetaData.Modules.Find(m => m.StaticId.Equals(signal.ModuleStaticId));
-                _gamePlayContextModel.ChangeState(EGamePlayState.PlaceModule);
-            });*/
             _realtimeDataModel.CurrentRoom.Subscribe(OnRoomLeft).AddTo(Disposables);
         }
 
@@ -89,7 +86,7 @@ namespace PG.ClassRoom.Context.Gameplay
         {
             if (room == null)
             {
-                SignalFactory.Create<LoadUnloadScenesSignal>().LoadUnload(Scenes.Lobby, Scenes.GamePlay);
+                SignalFactory.Create<LoadUnloadScenesSignal>().Unload(Scenes.GamePlay);
             }
         }
 
@@ -97,10 +94,19 @@ namespace PG.ClassRoom.Context.Gameplay
         {
             //ChangeZoom(0);
             //_cameraController.Position = new Vector3((_staticDataModel.MetaData.GridWidth * Constants.GridTileSize) / 2f, 0, (_staticDataModel.MetaData.GridHeight * Constants.GridTileSize) / 2f);
+            
+            /*SignalBus.Subscribe<AttachModuleToPointerSignal>(signal =>
+            {
+                _gamePlayContextModel.ModuleToAttach.Value =
+                    _staticDataModel.MetaData.Modules.Find(m => m.StaticId.Equals(signal.ModuleStaticId));
+                _gamePlayContextModel.ChangeState(EGamePlayState.PlaceModule);
+            });*/
         }
         
         private void HandleUIInput()
         {
+            _view.LobbyButton.onClick.AsObservable().Subscribe(_ => { _realtimeHub.LeaveRoom(); }).AddTo(Disposables);
+            
             _view.FriendsToggleButton.onClick.AsObservable().Subscribe(_ =>
             {
                 _view.FriendsPanel.SetActive(!_view.FriendsPanel.activeInHierarchy);

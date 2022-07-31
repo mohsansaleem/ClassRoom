@@ -33,11 +33,11 @@ namespace PG.ClassRoom.Context.Gameplay
                 .ToMethod<RemoveModuleCommand>(command => command.Execute)
                 .FromResolve();
             
-            /*Container.BindFactory<X, PlaceholderFactory<X>>().FromMethod((injectionContext)=>{
-                var gameObject = PhotonNetwork.Instantiate("MyPrefabName", new Vector3(0, 0, 0), Quaternion.identity, 0);
+            Container.BindFactory<PlayerController, PlayerController.Factory>().FromMethod((injectionContext)=>{
+                var gameObject = PhotonNetwork.Instantiate("Contexts/Gameplay/Prefabs/Player", new Vector3(0, 0, 0), Quaternion.identity, 0);
                 injectionContext.Inject(gameObject);
-                return gameObject;
-            });*/
+                return gameObject.GetComponent<PlayerController>();
+            });
         }
     }
 }

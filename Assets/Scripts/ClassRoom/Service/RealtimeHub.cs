@@ -66,9 +66,9 @@ namespace PG.ClassRoom.Service
             return promiseReturn;
         }
 
-        public bool CreateRoom(string roomName)
+        public bool CreateRoom(string roomName, RoomOptions roomOptions)
         {
-            return PhotonNetwork.CreateRoom(roomName);
+            return PhotonNetwork.CreateRoom(roomName, roomOptions);
         }
         
         public bool JoinRoom(string roomName)

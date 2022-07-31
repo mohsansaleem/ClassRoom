@@ -30,7 +30,7 @@ namespace PG.ClassRoom.Context.Gameplay
             {
                 base.OnStateExit();
                 
-                View.LowerPanel.SetActive(false);
+                //View.LowerPanel.SetActive(false);
                 
                 Mediator.OnClickAtModule -= OnClickAtModule;
             }

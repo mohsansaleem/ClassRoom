@@ -1,4 +1,5 @@
 ﻿using PG.ClassRoom.Model.Context;
+using Photon.Pun;
 using UnityEngine;
 
 namespace PG.ClassRoom.Context.Gameplay
@@ -17,6 +18,9 @@ namespace PG.ClassRoom.Context.Gameplay
 
                 //GridController.GridSize = new Vector2(StaticDataModel.MetaData.GridWidth, StaticDataModel.MetaData.GridHeight);
                 //CameraController.CurrentZoom = StaticDataModel.MetaData.MinZoomLevel;
+
+                PlayerController playerController = Mediator._playerControllerFactory.Create();
+                playerController.transform.parent = View.Environment;
                 
                 Mediator._gamePlayContextModel.ChangeStateAndNotify(EGamePlayState.Regular);
             }
